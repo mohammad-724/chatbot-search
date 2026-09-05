@@ -1,5 +1,5 @@
 live url: https://my-chatbot-search.onrender.com
-
+live git deploy readme url: https://mohammad-724.github.io/chatbot-search/
 
 # ConnectX – AI Web Search Chatbot
 
