@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ConnectX — AI Web Search</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+          rel="stylesheet">
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="brand">
+            <div class="brand-logo">X</div>
+
+            <div class="brand-text">
+                <h1>ConnectX</h1>
+                <span>AI Web Search</span>
+            </div>
+        </div>
+
+        <button class="new-chat-btn" id="newChatButton">
+            <span>＋</span>
+            New Chat
+        </button>
+
+        <div class="sidebar-section">
+            <span class="section-title">Explore</span>
+
+            <button class="sidebar-item">
+                <span>⌕</span>
+                Web Search
+            </button>
+
+            <button class="sidebar-item">
+                <span>◈</span>
+                Discover
+            </button>
+        </div>
+
+        <div class="sidebar-bottom">
+
+            <div class="powered">
+                <span class="status-dot"></span>
+                Search engine online
+            </div>
+
+            <div class="sidebar-footer">
+                ConnectX v1.0
+            </div>
+
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="main">
+
+        <!-- TOP BAR -->
+        <header class="topbar">
+
+            <div class="mobile-brand">
+                <div class="brand-logo small">X</div>
+                <strong>ConnectX</strong>
+            </div>
+
+            <div class="topbar-right">
+                <span class="online-indicator"></span>
+                Web Search
+            </div>
+
+        </header>
+
+
+        <!-- CHAT AREA -->
+        <section class="chat-area">
+
+            <div class="messages" id="messages">
+
+                <!-- WELCOME SCREEN -->
+                <div class="welcome" id="welcome">
+
+                    <div class="welcome-logo">
+                        X
+                    </div>
+
+                    <h2>
+                        What can I help you find?
+                    </h2>
+
+                    <p>
+                        Search the web, discover information,
+                        and get concise answers with sources.
+                    </p>
+
+                    <div class="suggestions">
+
+                        <button onclick="useExample('What is artificial intelligence?')">
+                            <span>AI</span>
+                            What is artificial intelligence?
+                        </button>
+
+                        <button onclick="useExample('Latest developments in space technology')">
+                            <span>SP</span>
+                            Latest developments in space technology
+                        </button>
+
+                        <button onclick="useExample('How does Python programming work?')">
+                            <span>PY</span>
+                            How does Python programming work?
+                        </button>
+
+                        <button onclick="useExample('What are the latest technology trends?')">
+                            <span>TC</span>
+                            Latest technology trends
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- LOADING -->
+            <div id="loading" class="loading hidden">
+
+                <div class="loading-icon">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+
+                <span>Searching the web...</span>
+
+            </div>
+
+        </section>
+
+
+        <!-- INPUT AREA -->
+        <footer class="input-area">
+
+            <div class="input-container">
+
+                <div class="search-box">
+
+                    <textarea
+                        id="queryInput"
+                        rows="1"
+                        maxlength="500"
+                        placeholder="Ask ConnectX anything..."
+                    ></textarea>
+
+                    <button
+                        id="searchButton"
+                        class="send-button"
+                        aria-label="Search"
+                    >
+                        ↑
+                    </button>
+
+                </div>
+
+                <div class="input-info">
+                    <span>ConnectX searches the web to provide current information.</span>
+                    <span>Press Enter to search</span>
+                </div>
+
+            </div>
+
+        </footer>
+
+    </main>
+
+</div>
+
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>
