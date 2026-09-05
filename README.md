@@ -1,3 +1,6 @@
+live url: https://my-chatbot-search.onrender.com
+
+
 # ConnectX – AI Web Search Chatbot
 
 ConnectX is a lightweight web-based chatbot that searches the web and provides concise AI-generated answers with source links. It was built using Python, Flask, HTML, CSS, JavaScript, and the Tavily Search API.
