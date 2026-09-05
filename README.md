@@ -1,65 +1,121 @@
-# SearchBot – AI-Powered Web Search Assistant
+# ConnectX – AI Web Search Chatbot
 
-A beginner-friendly Flask chatbot that searches the web using Tavily and displays an AI-generated answer with source links.
+ConnectX is a lightweight web-based chatbot that searches the web and provides concise AI-generated answers with source links. It was built using Python, Flask, HTML, CSS, JavaScript, and the Tavily Search API.
 
 ## Features
 
-- Simple chat interface
-- Web search
-- AI-generated search answer
-- Source links
-- Responsive design
-- Flask backend
-- Environment-variable API key
-- Ready for Render deployment
+- Modern responsive chatbot UI
+- Real-time web search
+- AI-generated summarized answers
+- Source links for verification
+- New Chat option
+- Copy answer button
+- Example prompts
+- Enter-to-search support
+- Mobile-responsive design
+- Ready for cloud deployment
 
-## 1. Requirements
+## Tech Stack
 
-- Python 3.10 or 3.11
-- A Tavily API key
+| Layer | Technology |
+|---|---|
+| Frontend | HTML5, CSS3, JavaScript |
+| Backend | Python, Flask |
+| Web Search / AI Answer | Tavily Search API |
+| Environment Variables | python-dotenv |
+| Production Server | Gunicorn |
+| Version Control | Git, GitHub |
+| Deployment | Render |
+
+## How It Works
+
+```text
+User enters a question
+        ↓
+ConnectX Frontend
+        ↓
+Flask Backend (/api/search)
+        ↓
+Tavily Search API
+        ↓
+Web results + AI-generated answer
+        ↓
+ConnectX displays answer + sources
+```
+
+## Project Structure
+
+```text
+search-chatbot/
+│
+├── app.py                  # Flask backend and search API
+├── requirements.txt        # Python dependencies
+├── .env                    # API key (local only)
+├── .env.example            # Environment variable template
+├── .gitignore              # Git exclusions
+├── .python-version         # Python version for deployment
+│
+├── templates/
+│   └── index.html          # Main chatbot page
+│
+└── static/
+    ├── style.css           # UI styling and responsive design
+    └── script.js           # Chat and search logic
+```
+
+## Requirements
+
+- Python 3.10.3 or compatible supported Python version
+- Git
+- Tavily API key
 - Internet connection
 
-## 2. Create virtual environment
+## Installation
 
-### Windows
+### 1. Clone the repository
 
 ```bash
+git clone https://github.com/YOUR-USERNAME/connectx.git
+cd connectx
+```
+
+### 2. Create and activate a virtual environment
+
+Windows CMD:
+
+```cmd
 python -m venv venv
 venv\Scripts\activate
 ```
 
-### macOS/Linux
+PowerShell, if script execution is restricted:
 
-```bash
-python3 -m venv venv
-source venv/bin/activate
+```powershell
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+.\venv\Scripts\Activate.ps1
 ```
 
-## 3. Install dependencies
+### 3. Install dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-## 4. Configure API key
+## Tavily API Setup
 
-Copy `.env.example` to `.env`.
-
-### Windows Command Prompt
-
-```bash
-copy .env.example .env
-```
-
-Then edit `.env`:
+Create a `.env` file in the project root:
 
 ```env
-TAVILY_API_KEY=tvly-your_real_key
+TAVILY_API_KEY=your_tavily_api_key
 ```
 
-Do not upload `.env` to GitHub.
+The application loads the key using `python-dotenv`.
 
-## 5. Run locally
+**Never commit `.env` or expose your API key publicly.**
+
+## Run Locally
+
+Start the Flask server:
 
 ```bash
 python app.py
@@ -71,77 +127,110 @@ Open:
 http://127.0.0.1:5000
 ```
 
-## 6. Deploy to Render
+## API Endpoint
 
-Push this project to GitHub.
+ConnectX uses:
 
-Create a Render Web Service and use:
-
-Build Command:
-
-```bash
-pip install -r requirements.txt
+```text
+POST /api/search
 ```
 
-Start Command:
+Example request:
 
-```bash
+```json
+{
+  "query": "What is Python?"
+}
+```
+
+A successful response contains:
+
+```json
+{
+  "success": true,
+  "query": "What is Python?",
+  "answer": "AI-generated summarized answer...",
+  "sources": [
+    {
+      "title": "Source title",
+      "url": "https://example.com",
+      "content": "Source summary..."
+    }
+  ]
+}
+```
+
+## Backend Testing
+
+Windows CMD:
+
+```cmd
+curl -X POST http://127.0.0.1:5000/api/search ^
+-H "Content-Type: application/json" ^
+-d "{"query":"What is Python?"}"
+```
+
+A successful response should contain:
+
+```json
+"success": true
+```
+
+## Deployment on Render
+
+Push the project to GitHub and create a **Web Service** on Render.
+
+Use:
+
+```text
+Build Command:
+pip install -r requirements.txt
+
+Start Command:
 gunicorn app:app
 ```
 
 Add this environment variable in Render:
 
 ```text
-TAVILY_API_KEY = your_real_tavily_key
+TAVILY_API_KEY=your_tavily_api_key
 ```
 
-## 7. Project structure
+Do not upload `.env` to GitHub.
 
-```text
-search-chatbot/
-├── app.py
-├── requirements.txt
-├── README.md
-├── .env.example
-├── .gitignore
-├── .python-version
-├── templates/
-│   └── index.html
-└── static/
-    ├── style.css
-    └── script.js
-```
+## Security
 
-## 8. Troubleshooting
+- API keys are stored in environment variables.
+- `.env` is excluded through `.gitignore`.
+- The Tavily API key is not exposed in frontend JavaScript.
+- Search requests go through the Flask backend.
 
-### Missing API key
+## Future Improvements
 
-Make sure `.env` exists beside `app.py` and contains:
-
-```env
-TAVILY_API_KEY=tvly-xxxxxxxx
-```
-
-### Missing Python package
-
-Activate the virtual environment and run:
-
-```bash
-pip install -r requirements.txt
-```
-
-### Port issue
-
-On local development, change the fallback port in `app.py` from `5000` to another free port.
-
-## 9. Suggested future upgrades
-
-- Conversation memory
-- User accounts
-- Search history
+- Chat history and persistent conversations
 - Dark mode
-- News search mode
-- Image search
+- Markdown-formatted answers
 - Voice input/output
-- PDF/RAG document search
-- Better citation formatting
+- User authentication
+- Advanced search filters
+- Saved searches
+- Multiple AI/search providers
+
+## Learning Outcomes
+
+This project demonstrates:
+
+- Python and Flask backend development
+- REST API integration
+- Web search API integration
+- Frontend-backend communication using JavaScript `fetch()`
+- JSON request/response handling
+- Environment variable management
+- Git/GitHub workflow
+- Cloud deployment using Render
+
+## Author
+
+**Mohammad Azmath Ali**
+
+Built as a practical full-stack AI/web-search project.
