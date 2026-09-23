@@ -3,7 +3,7 @@ live git deploy readme url: https://mohammad-724.github.io/chatbot-search/
 
 # ConnectX – AI Web Search Chatbot
 
-ConnectX is a lightweight web-based chatbot that searches the web and provides concise AI-generated answers with source links. It was built using Python, Flask, HTML, CSS, JavaScript, and the Tavily Search API.
+ConnectX is a lightweight and web-based chatbot that searches the web and provides concise AI-generated answers with source links. It was built using Python, Flask, HTML, CSS, JavaScript, and the Tavily Search API.
 
 ## Features
 
